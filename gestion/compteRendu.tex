@@ -1,0 +1,120 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[francais]{babel}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\setlength{\bottummargin}{0pt}
+\setlength{\topmargin}{0pt}
+\title{Compte rendu de la réunion 14/01/2015}
+\author{}
+
+\begin{document}
+\maketitle
+
+
+
+
+
+
+\part*{Présent}
+	
+		\begin{itemize}
+			
+			\item Pascal GEORGI : Encadrant du projet
+			\item Adil EL-QLAI
+			\item Samuel FOBIS
+			\item Amazigh HADDADOU
+			
+		\end{itemize}
+		
+\section{Ordre Du Jour}
+		\begin{itemize}
+		\begin{doublespacing}
+			\item Bien Comprendre l'objectif du projet (de l'application à concevoir).
+			\item Décomposition en étapes l'ensemble du projet.
+			\item Définition, avec l'encadrant, les différentes fonctionnalités de l'application. 
+			\item Le choix du langage et sur quelle plateforme mobile sera développée.
+		\end{doublespacing}	
+		\end{itemize}
+		
+
+
+\section{Informations échangées}
+
+\paragraph{}
+\begin{doublespacing}
+		On a pu divisé le projet en deux parties de développement, la première a pour objectif d'avoir une présentation exploitable d'une matrice prise en photo et la deuxième consiste à appliquer les différents calculs mathématique.
+	
+		\paragraph{Première Partie :}
+	
+		
+		\begin{itemize}
+		
+		\item Prendre en photo une matrice écrite sur tableau, sur une feuille au autre support.
+		\item Utilisation de OCR (optical character recognition) la reconnaissance optique des caractères pour extraire de l'image toutes les données importante (crochets "[ ]" qui délimitent la matrice ou parenthèses, les trois point "..." dans le cas d'une grosse matrice, valeurs...)
+		
+		\item Avoir une représentation exploitable de la matrice grâce à OCR selon la forme de la matrice (simple ou les colonnes de la matrice sont une suite arithmétique ou géométrique )
+		\item Affichage sur écran de la matrice extraite, possibilité d'utiliser une représentation XML pour affichage.
+		
+		\end{itemize}
+		
+	\end{doublespacing}	
+		
+		\paragraph{Deuxième Partie :}
+		
+		\begin{doublespacing}	
+La mise en œuvre des différents algorithmes pour le calculs mathématique et tout les calculs se feront en fonction de l'ensemble dont lequel la matrice est défini (entiers, rationnels, corps fini...)			
+			\begin{itemize}
+			\item Le déterminant 
+			\item Le Rang
+			\item Inverser la matrice 
+			\item Résolution d'un système linéaire  
+					\begin{math}
+					\begin{bmatrix}
+					1 & 2 & 3 \\
+					4 & 6 & 8 \\
+					8 & 1 & 7 
+					\end{bmatrix}
+					\begin{pmatrix}
+					x \\
+					y \\
+					z
+					\end{pmatrix}
+					= 
+					\begin{pmatrix}
+					2 \\ 3 \\ 4
+					\end{pmatrix}
+					\end{math}
+			\end{itemize}
+
+\paragraph{}			
+ En fonction de temps, un autre objectif est d'intégrer une API pour optimiser les calculs sur des grosses matrice (exemple M):
+ 
+\end{doublespacing}	
+
+	\begin{center}
+		
+\begin{math}
+M=
+\begin{bmatrix}
+
+   a & u_{0} & u_{1} & \ldots & u_n \\
+   v_{0}  \\
+   v_{1} \\
+   \vdots \\
+   v_{n}
+   
+   
+\end{bmatrix}
+\end{math}
+\end{center}	
+
+\part*{ La date de la Prochaine réunion }
+\paragraph{} Une réunion est fixée pour la fin du mois de Janvier.
+
+
+
+\end{document}
