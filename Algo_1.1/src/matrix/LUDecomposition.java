@@ -7,6 +7,7 @@ public class LUDecomposition  {
 	
 	private int[] piv; // un tableau pour le stockage interne 
 	
+	/*
 	public LUDecomposition (Matrix A) {
 		
 		
@@ -81,6 +82,83 @@ public class LUDecomposition  {
 		         }
 		      }
 		   }
+	*/
+	
+	public LUDecomposition (Matrix ma){
+		int  m = ma.getligneDimension();
+		int n = ma.getColsDimension();
+		
+		 Matrix X = new Matrix(m,n);
+	      int[][] l = X.getArray();  
+		
+		int u[][]= new int[m][n];
+		int a[][] = ma.getArray();
+		
+		for (int i=0; i<m; i++)
+			for (int j=0; j<n; j++){
+				
+				if (i==j){
+					l[i][j]=1;
+					u[i][j]=1;
+				}else {
+				l[i][j]=0;
+				u[i][j]=0;
+				}
+			}
+		/*
+		Matrix lu = new Matrix(u);
+		System.out.println(""+ma.showMatrix()); 
+		*/
+		
+		u[0][0] = a[0][0];
+		
+		for (int j=1; j<n; j++){
+			u[1][j]=a[1][j];
+			l[j][1]=a[j][1]/a[1][1];      //à modifier lors de l'utilisation de la bibliothèque Q
+		}
+		
+		for (int i=1; i<n-1; i++ ){
+			int som = 0;
+			
+			for (int k=0; k<i-1; k++)
+			{
+				som = som + l[i][k] * u[k][i];
+			}
+			u[i][i]=a[i][i] - som;
+			
+			
+			for (int j=i+1; j<n; j++)
+			{
+				int som1 = 0;
+				for (int k = 0; k <i-1; k++)
+				{
+					som1 = som1 +l[i][k] *  u[k][j];
+				}
+				u[i][j]= a[i][j] - som1;
+				
+				int som2 = 0;
+				for (int k = 0; k<i-1; k++)
+				{
+					som2= som2 +l[j][k]*u[k][j];
+				}
+				 l[j][i] = 1/u[i][i]*(a[j][i] - som2);
+				
+			}
+		}
+	int som =0;
+	for (int k=0; k<n-1; k++)
+	{
+		som = som + l[n][k]*u[k][n];
+	}
+		u[n][n]=a[n][n] - som;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	//avoir la matrice triangulaire inférieure

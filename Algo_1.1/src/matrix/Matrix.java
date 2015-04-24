@@ -1,11 +1,13 @@
 package matrix;
 
-public class Matrix {
+public class Matrix  {
 
 	private int nligne;
 	private int ncols;
 	private int[][] data;
-
+	private int[][] A;
+	
+	
 	public Matrix(int[][] dat) {
 		this.data = dat;
 		this.nligne = dat.length;
@@ -99,4 +101,27 @@ public class Matrix {
 		}
 		return matrice;
 	}
+	
+	public int getligneDimension () {
+	      return nligne;
+	   }
+	public int getColsDimension (){
+		return ncols;
+	}
+	
+	public int[][] getArray () {
+	      return data;
+	   }
+	
+	public int[][] getArrayCopy () {
+	      int[][] C = new int[nligne][ncols];
+	   	      for (int i = 0; i < nligne; i++) {
+	         for (int j = 0; j < ncols; j++) {
+	        	 int val = this.getValueAt(i,j);	 
+	            C[i][j] = val;	            
+	         }
+	      }
+	      return C;
+	   }
+	
 }
