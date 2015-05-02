@@ -1,6 +1,7 @@
 package matrix;
 
 public class Q {
+// sur la branch test
 	
 	long nomi;  // le nominateur de la fraction 
 	long deno;	// le denominateur de la fraction 
