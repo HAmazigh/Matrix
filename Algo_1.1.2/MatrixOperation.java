@@ -71,17 +71,19 @@ public class MatrixOperation {
 			sous1.soustraction(mult1, mult2);
 			return sous1;
 			
-		//	return (matrix.getValueAt_(0, 0) * matrix.getValueAt_(1, 1)) - ( matrix.getValueAt_(0, 1) * matrix.getValueAt_(1, 0));
 		}
 		Q sum = new Q();
 		for (int i=0; i<matrix.getNcols(); i++) {
 			Q mult1 = new Q();
 				mult1.multiplication(new Q(changeSign(i)), matrix.getValueAt_(0, i));
 			Q mult2 = new Q();
+			System.out.println("ça va entrer dans une boucle récursive");
 				mult2.multiplication(mult1, determinant_(matrixExtraire_(matrix, 0, i)));
 			
 				sum.addition(sum, mult2);
+				
 		}
+		
 		return sum;
 	}
 
@@ -114,6 +116,7 @@ public class MatrixOperation {
 	public static Matrix matrixExtraire_(Matrix matrix, int ligneExclu, int colonneExclu) {
 		Matrix mat = new Matrix(matrix.getNligne()-1, matrix.getNcols()-1);
 	//	System.out.println("nombre ligne :\n"+mat.showMatrix());
+	//	System.out.println("valeur de mat :\n"+mat.getData());
 		
 		int r = -1;
 		for (int i=0;i<matrix.getNligne();i++) {
@@ -124,10 +127,13 @@ public class MatrixOperation {
 			for (int j=0;j<matrix.getNcols();j++) {
 				if (j==colonneExclu)
 					continue;
-				System.out.println("valeur de getvalueAt_ "+matrix.getValueAt_(i, j));
+			//	System.out.println("valeur de getvalueAt_ "+matrix.getValueAt_(i, j).showQ()+" \n la valeur de r et ++c :"+r+"_"+ ++c +"");
+				System.out.println("valeur de mat :\n"+mat.getData());
 				mat.setValueAt_(r, ++c, matrix.getValueAt_(i, j));
 			}
 		}
+		
+		System.out.println("je retourne le mat !");
 		return mat;
 	}
 	
@@ -163,26 +169,8 @@ public class MatrixOperation {
 		return b;
 	}
 	
-	/**
-	 
-	 **faire des calculs sur des corps fini n avec n est un nombre premier
-	 
-	 */
-	public static Matrix corps_fini(Matrix matrice, int n){
-		int [][] m;
-		m = matrice.getArrayCopy();
-		
-		if (premier(n)) {
-			for (int i=0; i <matrice.getNligne(); i++){
-				for (int j=0; j<matrice.getNcols(); j++) {
-					m[i][j]=m[i][j] % n;
-				}
-			}
-		}
-		Matrix matrice_corp = new Matrix (m);
-		return matrice_corp;
-		
-	}
+
+
 	
 
 	

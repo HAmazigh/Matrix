@@ -15,9 +15,9 @@ public class Main {
 		Matrix m = new Matrix (3,3);   //constructeur avec le nombre de ligne/colonne donné  rempli de 0
 		
 		//les tableau de matrice 
-		int m2_[][]= {{2,3,6,4},{1,6,5,7},{2,3,9,2},{0,8,3,7}}; 
+		int m2_[][]= {{2,3,6,4},{1,6,5,7},{2,3,9,2}}; 
 		int m3_[][]= {{5,-6,2,0},{9,0,5,6},{2,3,0,2},{8,9,3,7}};
-		int m4_[][]= {{2,1,-2},{4,5,-3},{-2,5,3}};
+		Q m4_[][]= {{new Q(2,3), new Q(4,6)},{new Q(4,5), new Q(5,3)}};
 		int m1_[][]={{1,3,2,13},{3,10,11,5},{9,6,7,12},{4,15,14,1}};  // <--- l'image de test sur l'application 
 		Q m5_[][] = {{new Q(1,2), new Q(3,5), new Q(5,4)},{new Q(6,2), new Q(7,5), new Q(2,4)},{new Q(6,2), new Q(7,5), new Q(2,4)}};
 		
@@ -30,27 +30,24 @@ public class Main {
 		Matrix m5 = new Matrix (m5_);
 		
 		
-		int det_m1,det_m2,det_m4;
+		int det_m2;
 		Q det_m5 = new Q();
+		Q det_m4= new Q();
 		
-
-	//	System.out.println("Affichage de la matrice m4 : \n"+m4.showMatrix());
-		
-		//transposer une matrice
-		//Matrix m_trans = MatrixOperation.transpose(m2);
-		//System.out.println("Affichage de la matrice transposée : \n"+m_trans.showMatrix());
 		
 	try {
 		
-		det_m2 = MatrixOperation.determinant(m2);
-		det_m4 = MatrixOperation.determinant(m4);
-		det_m1 = MatrixOperation.determinant(m1);
+	
+		det_m4 = MatrixOperation.determinant_(m4);
+
+		
 		det_m5 = MatrixOperation.determinant_(m5);
 		
-		System.out.println("le détérminant de la matrice m1 ===> "+det_m5);
+		System.out.println(" la matrice : \n"+m5.showMatrix_());
+		System.out.println("le détérminant de la matrice m1 ===> "+det_m4.showQ());
 	//	System.out.println("Le determinant de la matrice m2 = \n"+m1.showMatrix()+"  === "+det_m2);
 	//	System.out.println("Le determinant de la matrice m2 = \n"+m4.showMatrix()+"  === "+det_m4);
-		System.out.println(" la matrice : \n"+m5.showMatrix_());
+		
 		
 		
 		
@@ -64,8 +61,10 @@ public class Main {
 		/**
 		 *  calculs sur des corps fini avec la méthode : MatrixOperation.corps_fini(matrice, nombre_premier)
 		 */
-	Matrix ma_matrice = MatrixOperation.corps_fini(m1, 11);
-	System.out.println(" la matrice m1 dans le corps fini 11 est :\n "+ma_matrice.showMatrix());
+	Matrix ma_matrice = CorpsFinis.corps_fini(m1, 11);
+	int det_m1 = CorpsFinis.determinant_CorpsFinis(ma_matrice, 11);
+	System.out.println(" la matrice m1 dans le corps fini 11 est :\n"+ma_matrice.showMatrix());
+	System.out.println("le determinant de m1 dans 11 est : "+det_m1);
 	
 
 	Q q = new Q(8,1);

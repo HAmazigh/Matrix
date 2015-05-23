@@ -2,9 +2,9 @@ package matrix;
 
 public class Q {
 	
-	protected long nomi;  // le nominateur de la fraction 
-	protected long deno;	// le denominateur de la fraction 
-	long[] quot;  //Un tableau qui contient le resultat de la division et le reste de la division 
+	protected int nomi;  // le nominateur de la fraction 
+	protected int deno;	// le denominateur de la fraction 
+	int[] quot;  //Un tableau qui contient le resultat de la division et le reste de la division 
 	
 	public Q(){
 		this.nomi =0;
@@ -24,30 +24,30 @@ public class Q {
 			//									-**** Ça va poser unprblème au niveau de la reconnaissance ! 
 			// 									-
 	
-	public Q(long a ){
+	public Q(int a ){
 		nomi = a;
 		deno = 1;
 		quot = euclide(nomi,deno);
 	}
-	public long[] euclide(long a, long b) {
+	public int[] euclide(int a, int b) {
 		
-		  long r = a;
-		  long q = 0;
+		  int r = a;
+		  int q = 0;
 
 		  while (r >= b) {
 		    r = r - b;
 		    q = q + 1;
 		  }
 
-		  long[] euclide = { q, r };
+		  int[] euclide = { q, r };
 		  return euclide;
 		}
 	
 	public void addition(Q q1, Q q2){
 		
-		long a  = ((q1.nomi * q2.deno) + (q2.nomi*q1.deno)) ;
-		long b  = (q1.deno* q2.deno);
-		long pgcd = pgcd(a, b);
+		int a  = ((q1.nomi * q2.deno) + (q2.nomi*q1.deno)) ;
+		int b  = (q1.deno* q2.deno);
+		int pgcd = pgcd(a, b);
 		
 		if (pgcd != 0)
 		{
@@ -59,15 +59,15 @@ public class Q {
 			this.nomi = a ;
 			this.deno = b ;
 		}
-		long[] resultat = euclide ( ((q1.nomi * q2.deno) + (q2.nomi*q1.deno)), (q1.deno* q2.deno));
+		int[] resultat = euclide ( ((q1.nomi * q2.deno) + (q2.nomi*q1.deno)), (q1.deno* q2.deno));
 		this.quot = resultat;     
 	}
 	
 	public void division(Q q1, Q q2){       //=================> Pour division q1/q2
 		
-		long a = (q1.nomi * q2.deno);
-		long b = (q1.deno * q2.nomi);
-		long pgcd = pgcd(a, b);
+		int a = (q1.nomi * q2.deno);
+		int b = (q1.deno * q2.nomi);
+		int pgcd = pgcd(a, b);
 		
 	//	System.out.println(" a = "+a+ " b = "+b+" pgcd = "+pgcd);
 		if (pgcd != 0){
@@ -81,16 +81,16 @@ public class Q {
 			this.deno=b;
 		}
 		
-		long[] resultat = euclide((q1.nomi * q2.deno),(q1.deno * q2.nomi));
+		int[] resultat = euclide((q1.nomi * q2.deno),(q1.deno * q2.nomi));
 		this.quot = resultat;
 		
 	}
 	
 	public void soustraction (Q q1, Q q2){
-		long a  = ((q1.nomi * q2.deno) - (q2.nomi*q1.deno)) ;
-		long b  = (q1.deno* q2.deno);
+		int a  = ((q1.nomi * q2.deno) - (q2.nomi*q1.deno)) ;
+		int b  = (q1.deno* q2.deno);
 	
-		long pgcd = pgcd(a, b);
+		int pgcd = pgcd(a, b);
 		
 		if (pgcd != 0)
 		{
@@ -102,15 +102,16 @@ public class Q {
 			this.nomi = a ;
 			this.deno = b ;
 		}
-		long[] resultat = euclide ( ((q1.nomi * q2.deno) - (q2.nomi*q1.deno)), (q1.deno* q2.deno));
+		int[] resultat = euclide ( ((q1.nomi * q2.deno) - (q2.nomi*q1.deno)), (q1.deno* q2.deno));
 		this.quot = resultat;    
 	}
 	
 	public void multiplication(Q q1, Q q2){
+		try {
 		
-		long a= q1.nomi * q2.nomi;
-		long b = q1.deno * q2.deno;
-		long pgcd = pgcd (a,b);
+		int a= q1.nomi * q2.nomi;
+		int b = q1.deno * q2.deno;
+		int pgcd = pgcd (a,b);
 		
 		if (pgcd != 0){
 			this.nomi = this.euclide(a, pgcd)[0];
@@ -121,17 +122,26 @@ public class Q {
 			this.deno = b;
 		}
 		
+		}catch (ArithmeticException e){
+			System.out.print("Exception ! Division par zéro");
+		}
+		
 		
 	}
 	
-	public long getNomi(){
+	public int getNomi(){
 		return this.nomi;
 	}
-	public long getDeno(){
+	public int getDeno(){
 		return this.deno;
 	}
 	
-	
+	void setNomi (int n){
+		this.nomi=n;
+	}
+	void setDeno (int d){
+		this.deno=d;
+	}
 	
 	
 	
@@ -143,7 +153,7 @@ public class Q {
 		
 	}
 	
-	public long pgcd(long a, long b ){
+	public int pgcd(int a, int b ){
 		a = Math.abs(a); b= Math.abs(b);
 	    while (a!=b)  
 	    	if (a>b){a=a-b;}

@@ -5,8 +5,7 @@ public class Matrix  {
 	private int nligne;
 	private int ncols;
 	private int[][] data;
-	private int[][] A;
-	private Q[][]  data_;
+	private Q[][]  data_ ;
 	
 	
 	
@@ -14,17 +13,22 @@ public class Matrix  {
 		this.data = dat;
 		this.nligne = dat.length;
 		this.ncols = dat[0].length;
-
+		this.data_=new Q[nligne][ncols];
 	}
 
 	public Matrix(int nrow, int ncol) {
 		this.nligne = nrow;
 		this.ncols = ncol;
 		data = new int[nrow][ncol];
-	
+		data_ = new Q[nrow][ncol];
+			for (int i=0; i<nligne; i++)
+				for (int j=0; j<ncols; j++){
+					data_[i][j]=new Q(0,1);
+				}
 	}
 	
 	public Matrix (Q[][] dat){
+		this.data =null;
 		this.data_ = dat;
 		this.nligne = dat.length;
 		this.ncols = dat[0].length;
@@ -65,30 +69,25 @@ public class Matrix  {
 	public void setValueAt(int row, int col, int value) {
 		data[row][col] = value;
 	}
-	
-	public void setValueAt_(int row, int col, Q value ){
-		
-		System.out.println("==> "+data_[row][col].getClass());
-		this.data_[row][col].nomi = value.nomi;
-		System.out.println("data_[][]"+data_[row][col].nomi);
-		this.data_[row][col].deno = value.deno;
-		
-	}
 
-public void setValueAt_(int row, int col, long[] value ){
-		
-		System.out.println("==> "+this.data_[row][col].getNomi());
-		
-		this.data_[row][col].nomi = value[0];
-		System.out.println("data_[][]"+data_[row][col].nomi);
-		this.data_[row][col].deno = value[1];
-		
-	}
+public void setValueAt_(int row, int col, Q value ){
+	
+	//System.out.println("==> "+data_[row][col].getClass());
+
+//	System.out.println("valeur de q : "+value.showQ()+" valeur de data_");
+	data_[row][col].setNomi(value.nomi);
+	data_[row][col].setDeno(value.deno);
+//	this.data_[row][col].nomi = value.nomi;
+//	this.data_[row][col].deno = value.deno;
+	
+}
 
 	public int getValueAt(int row, int col) {
 		return data[row][col];
 	}
+	
 	public Q getValueAt_(int row, int col) {
+	//	System.out.println("je suis dans getValue "+data_[row][col].showQ());
 		return data_[row][col];
 	}
 	
@@ -104,6 +103,7 @@ public void setValueAt_(int row, int col, long[] value ){
 			return nligne;
 		return -1;
 	}
+	
 
 	public Matrix multplierParCons(int constant) {
 		Matrix mat = new Matrix(nligne, ncols);
@@ -177,5 +177,14 @@ public void setValueAt_(int row, int col, long[] value ){
 	      }
 	      return C;
 	   }
+	
+	public String getData(){
+		String chaine=" "; 
+		for (int i=0; i<nligne;i++ )
+			for(int j=0; j<ncols; j++){
+				chaine=chaine+data_[i][j];
+			}
+		return chaine;
+	}
 	
 }
